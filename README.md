@@ -4,6 +4,9 @@ You will develop a single-page application featuring a map of your neighborhood 
 ### Instructions to use
 ---
 
+To run this app, clone/download this repository to your local machine. Open 'index.html' in your browser.
+
+
 On the screen, you will see a map of Mumbai, India. A few interests of tourist locations are pre-selected.
 
 

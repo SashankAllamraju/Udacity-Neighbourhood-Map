@@ -1,75 +1,4 @@
-/*
-Data points for 9 locations on the Mumbai map
-*/
-var Model = {
-  currentMarker: ko.observable(null),
-  markers: [
-    {
-      title: 'Banganga Tank',
-      lat: 18.945582,
-      lng: 72.793758,
-      url: 'https://en.wikipedia.org/wiki/Banganga_Tank',
-      highlight: ko.observable(false)
-    },
-    {
-      title: 'Elephanta Caves',
-      lat: 18.963373,
-      lng: 72.931474,
-      url: 'https://en.wikipedia.org/wiki/Elephanta_Caves',
-      highlight: ko.observable(false)
-    },
-    {
-      title: 'Gateway Of India Mumbai',
-      lat: 18.921975,
-      lng: 72.834649,
-      url: 'https://en.wikipedia.org/wiki/Gateway_of_India',
-      highlight: ko.observable(false)
-    },
-    {
-      title: 'The Asiatic Society of Mumbai',
-      lat: 18.931838,
-      lng: 72.836172,
-      url: 'http://asiaticsociety.org.in/',
-      highlight: ko.observable(false)
-    },
-    {
-      title: 'Chhatrapati Shivaji Maharaj Vastu Sangrahalaya',
-      lat: 18.926864,
-      lng: 72.832608,
-      url: 'http://www.csmvs.in/',
-      highlight: ko.observable(false)
-    },
-    {
-      title: 'Rajabai Clock Tower',
-      lat: 18.929766,
-      lng: 72.830142,
-      url: 'https://en.wikipedia.org/wiki/Rajabai_Clock_Tower',
-      highlight: ko.observable(false)
-    },
-    {
-      title: 'Byculla Zoo',
-      lat: 18.978871,
-      lng: 72.834475,
-      url: 'https://en.wikipedia.org/wiki/Jijamata_Udyaan',
-      highlight: ko.observable(false)
-    },
-    {
-      title: 'Hanging Garden',
-      lat: 18.957122,
-      lng: 72.804799,
-      url: 'https://en.wikipedia.org/wiki/Hanging_Gardens_of_Mumbai',
-      highlight: ko.observable(false)
-    },
-    {
-      title: 'Haji Ali Dargah',
-      lat: 18.982758,
-      lng: 72.808951,
-      url: 'http://www.hajialidargah.in/',
-      highlight: ko.observable(false)
-    }
-  ]
-};
-
+/********************************* VIEW MODEL ********************************************/
 var ViewModel = function() {
   var self = this;
   var map, geocoder, bounds, infowindow;
@@ -84,17 +13,7 @@ var ViewModel = function() {
   self.query = ko.observable('');
   self.showList = ko.observable(true);
 
-  /*
-  Initialize map by creating map markers from the Model data.
-  Function is set as IIFE to kick off immediately.
-    */
-  var initMap = function() {
-    /*
-    Check if Google Maps object exists.
-    If it does, create map.
-    Else, display error div.
-      */
-    if(typeof window.google === 'object' && typeof window.google.maps === 'object') {
+
       var mapOptions = {
         disableDefaultUI: true
       };
@@ -115,8 +34,7 @@ var ViewModel = function() {
         var marker = new google.maps.Marker({
           position: markPos,
           map: map,
-          icon: MarkerOpt.image,
-          shape: MarkerOpt.shape,
+          icon: 'img/072-location.png',
           title: markerList[x].title,
           url: markerList[x].url,
           highlight: markerList[x].highlight
@@ -151,8 +69,7 @@ var ViewModel = function() {
           clearMarkers();
 
           // Modify marker (and list) to show selected status.
-          that.setIcon(MarkerOpt.image2);
-          that.setShape(MarkerOpt.shape2);
+          that.setIcon('img/073-location2.png');
           that.highlight(true);
 
           infowindow.open(map, that);
@@ -185,11 +102,6 @@ var ViewModel = function() {
 
       //Check window size
       checkWindowSize();
-    } else {
-      //if no google object found, display error div
-      self.mapUnavailable(true);
-    }
-  }();
 
   /*
   Knockout computed observable will filter and return items that match the query string input by the user.
@@ -317,8 +229,7 @@ var ViewModel = function() {
     */
   function clearMarkers() {
     for(var x = 0; x < self.markerArray().length; x++){
-      self.markerArray()[x].setIcon(MarkerOpt.image);
-      self.markerArray()[x].setShape(MarkerOpt.shape);
+      self.markerArray()[x].setIcon('img/072-location.png');
       self.markerArray()[x].highlight(false);
     }
     Model.currentMarker(null);
@@ -335,36 +246,14 @@ var ViewModel = function() {
   }
 };
 
-/*
-Custom marker options for Google Maps.
-These options will change the default map markers to specific custom images and
-clickable areas that are defined by the programmer.
-If Google Maps is not available, checks against the window.google and window.google.maps objects are made to prevent
-display errors.
-  */
-var MarkerOpt = function() {
-  if (window.google && window.google.maps) {
-    image: {
-      url = 'img/072-location.png',
-      size = new google.maps.Size(14, 30),
-      origin = new google.maps.Point(0, 0),
-      anchor = new google.maps.Point(6, 28)
-    }
-    shape: {
-      coords = [1,1,13,1,13,29,1,29],
-      type = 'poly'
-    }
-    image2: {
-      url = 'img/180-target.png',
-      size = new google.maps.Size(87, 43),
-      origin = new google.maps.Point(0, 0),
-      anchor = new google.maps.Point(41, 39)
-    }
-    shape2: {
-      coords = [1,1,86,1,86,42,1,42],
-      type = 'poly'
-    }
-  }
-};
 
-ko.applyBindings(new ViewModel());
+
+/* initMap */
+function initMap() {
+  ko.applyBindings(new ViewModel());
+}
+
+/* on error */
+function mapError() {
+  alert('Something went wrong! Please TRY later or Check your code!')
+}
