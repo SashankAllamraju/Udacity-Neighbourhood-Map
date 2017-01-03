@@ -20,7 +20,9 @@ On the screen, you will see a map of Mumbai, India. A few interests of tourist l
 * Clicking on a location from the list or marker directly shows RELEVANT location details from a third-party API service (Flickr images).
 * They are stored in the 'lightbox' instead of 'infoWindow' (with 'show on click' option made available)
 * If you don't select any location, you get an ALERT message shown below on clicking the 'Flickr' icon on the bottom-right corner.
-Logo: ![Flickr Error](img/flickrError.JPG "Flickr Error")
+
+
+![Flickr Error](img/flickrError.JPG "Flickr Error")
 
 ### Use of APIs
 ---
