@@ -27,14 +27,14 @@ var Model = {
       title: 'The Asiatic Society of Mumbai',
       lat: 18.931838,
       lng: 72.836172,
-      url: 'http://asiaticsociety.org.in/',
+      url: 'https://asiaticsociety.org.in/',
       highlight: ko.observable(false)
     },
     {
       title: 'Chhatrapati Shivaji Maharaj Vastu Sangrahalaya',
       lat: 18.926864,
       lng: 72.832608,
-      url: 'http://www.csmvs.in/',
+      url: 'https://www.csmvs.in/',
       highlight: ko.observable(false)
     },
     {
@@ -62,7 +62,7 @@ var Model = {
       title: 'Haji Ali Dargah',
       lat: 18.982758,
       lng: 72.808951,
-      url: 'http://www.hajialidargah.in/',
+      url: 'https://www.hajialidargah.in/',
       highlight: ko.observable(false)
     }
   ]
